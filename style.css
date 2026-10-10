@@ -1,0 +1,515 @@
+/* ---------- Colours and base ---------- */
+:root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #f6f8f0;
+    --card: #fff;
+    --ink: #14281a;
+    --mute: #566558;
+    --green: #1f5a2b;
+    --lime: #8cc800;
+    --red: #c8302b;
+    --line: #dfe6d3;
+    --onl: #0f2314;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0e1710;
+        --card: #16231a;
+        --ink: #eef4e6;
+        --mute: #9fb0a2;
+        --green: #9bd63a;
+        --line: #2a3b2e;
+        --onl: #0e1710;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #0e1710;
+    --card: #16231a;
+    --ink: #eef4e6;
+    --mute: #9fb0a2;
+    --green: #9bd63a;
+    --line: #2a3b2e;
+    --onl: #0e1710;
+}
+
+html {
+    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+    scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 Figtree, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Bricolage Grotesque', Impact, sans-serif;
+    line-height: 1.05;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+.w {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+/* ---------- Top bar ---------- */
+nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+nav .w {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 56px;
+}
+
+nav img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+nav b {
+    font-family: 'Bricolage Grotesque';
+    font-size: 17px;
+    margin-right: auto;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+nav a.h {
+    display: none;
+}
+
+@media (min-width: 700px) {
+    nav a.h {
+        display: inline;
+    }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    background: var(--lime);
+    color: #0f2314;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font: 600 15px Figtree;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn.o {
+    background: transparent;
+    border: 2px solid currentColor;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 2px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    display: grid;
+    gap: 26px;
+    padding: 34px 0 46px;
+    align-items: center;
+}
+
+@media (min-width: 800px) {
+    .hero {
+        grid-template-columns: 1.05fr 1fr;
+    }
+}
+
+.hero h1 {
+    font-size: clamp(44px, 9vw, 92px);
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    font-size: 19px;
+    color: var(--mute);
+    max-width: 46ch;
+    margin: 16px 0 22px;
+}
+
+.hero .r {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hero .ph {
+    border-radius: 28px 28px 120px 28px;
+    aspect-ratio: 4/4.4;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* ---------- Green strip ---------- */
+.strip {
+    background: var(--green);
+    color: #fff;
+    padding: 14px 0;
+    font-weight: 600;
+}
+
+.strip .w {
+    display: flex;
+    gap: 10px 28px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .strip {
+        color: #0e1710;
+    }
+}
+
+/* ---------- Sections ---------- */
+section {
+    padding: 54px 0;
+}
+
+section h2 {
+    font-size: clamp(32px, 5vw, 50px);
+    margin-bottom: 8px;
+}
+
+.sub {
+    color: var(--mute);
+    margin: 0 0 24px;
+    max-width: 60ch;
+}
+
+/* ---------- Menu tabs and search ---------- */
+.tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+}
+
+.tabs button {
+    flex: none;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font: 600 14px Figtree;
+    cursor: pointer;
+}
+
+.tabs button[aria-pressed=true] {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tabs button[aria-pressed=true] {
+        color: #0e1710;
+    }
+}
+
+#q {
+    width: 100%;
+    max-width: 340px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font: 15px Figtree;
+    margin-bottom: 18px;
+}
+
+/* ---------- Menu cards ---------- */
+.g {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 14px;
+}
+
+.it {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.it img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 100%;
+    cursor: zoom-in;
+}
+
+.it .n {
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    text-align: center;
+    font: 700 22px 'Bricolage Grotesque';
+    background: color-mix(in srgb, var(--lime) 22%, var(--card));
+}
+
+.it div.b {
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.it strong {
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.it button {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--lime);
+    color: #0f2314;
+    font: 700 20px/1 Figtree;
+    cursor: pointer;
+}
+
+.it.on {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px var(--green);
+}
+
+.it.on button {
+    background: var(--red);
+    color: #fff;
+}
+
+/* ---------- Gallery ---------- */
+.ga {
+    columns: 2 150px;
+    column-gap: 12px;
+}
+
+.ga img {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    cursor: zoom-in;
+}
+
+@media (min-width: 800px) {
+    .ga {
+        columns: 4;
+    }
+}
+
+/* ---------- Events section ---------- */
+.ev {
+    background: var(--card);
+    border-block: 1px solid var(--line);
+}
+
+.sv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.sv span {
+    border: 1.5px solid var(--green);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 600;
+}
+
+/* ---------- Two-column layout (events, find us) ---------- */
+.two {
+    display: grid;
+    gap: 26px;
+}
+
+@media (min-width: 800px) {
+    .two {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.two img {
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+.ph3 a {
+    display: block;
+    font: 700 24px 'Bricolage Grotesque';
+    text-decoration: none;
+    margin: 6px 0;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: #0f2314;
+    color: #cfe0c4;
+    padding: 30px 0 90px;
+    font-size: 14px;
+}
+
+footer .w {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer img {
+    width: 46px;
+    border-radius: 50%;
+}
+
+/* ---------- Order bar at the bottom ---------- */
+#bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 18px;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    z-index: 30;
+}
+
+#bar.s {
+    display: flex;
+}
+
+#bar span {
+    margin-right: auto;
+    font-weight: 600;
+}
+
+#bar .btn {
+    padding: 9px 18px;
+}
+
+#bar .x {
+    background: none;
+    border: 0;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    font: 14px Figtree;
+}
+
+/* ---------- Photo viewer (lightbox) ---------- */
+#lb {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .92);
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#lb.s {
+    display: flex;
+}
+
+#lb img {
+    max-width: 92vw;
+    max-height: 84vh;
+    border-radius: 10px;
+}
+
+#lb button {
+    position: absolute;
+    background: #fff3;
+    color: #fff;
+    border: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#lb .c {
+    top: calc(env(safe-area-inset-top, 0px) + 14px);
+    right: 14px;
+}
+
+#lb .p {
+    left: 10px;
+}
+
+#lb .nx {
+    right: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
